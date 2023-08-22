@@ -21,3 +21,12 @@ export let OPENAI_KEYS = [
     "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 ];
+
+// User agents
+export const ALLOWED_USER_AGENTS = [
+    // Add the allowed user-agents here
+    // Example: "Mozilla/5.0" or the user-agent from where your app is making the requests from
+];
+
+// MongoDB URI
+export const MONGO_URI = "mongodb+srv://.../?retryWrites=true&w=majority";
