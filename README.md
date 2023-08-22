@@ -1,9 +1,6 @@
-## [Check the new Google Bard Chatbot!](https://github.com/PawanOsman/GoogleBard)
-### If you have any questions or need assistance, please join [[Discord](https://discord.pawan.krd)]
+# Welcome to ChatGPT API _**FREE Reverse MOBILE Proxy**_
 
-# Welcome to ChatGPT API _**FREE Reverse Proxy**_
-
-**ChatGPT API Free Reverse Proxy** is a free reverse proxy to OpenAI API that allows users to access OpenAI API for free.
+**ChatGPT API Free Reverse MOBILE Proxy** is a free reverse proxy to OpenAI API that allows users to access OpenAI API with an extra security layer.
 
 # Table of Contents
 
@@ -28,8 +25,26 @@
 - **Streaming Response** - The API supports streaming response, so you can get the response as soon as it's available.
 - **Same as Official** - The API has the same endpoints as the official API, so you can use the same code to access the API (even the official OpenAI libraries)
 - **Free** - The API is free to use through our [hosted API](#use-our-hosted-api) (You can also self-host the API if you want).
+- **Extra mobile security layers** - Extra middlewear checks (ex. UserAgent validation, MongoDB userId as request auth)
 
 **Note:** Self-hosting it isn't free, you need to use your OpenAI Account credit.
+
+## This is a Fork with some extra super powers! Read below before to proceed using this fork
+
+In the past 6 months I have been trying securing my iOS App against any type of attack or OpenAI token leak, without much results that's why I decided to use a proxy and in specific to fork this one. So what I did and why?
+
+**What's special** 
+
+As it's mobile proxy oriented, we don't care much about the White listed IP's (WHITELISTED_IPS) because mobile apps don't have a unique IP from where the requests comes from but instead we do have a very specific User Agent which usually contains the name of our app, I added an extra verification layer in which you can specify which is/are the allowed useer agents (ALLOWED_USER_AGENTS). That's the first extra security step mobile oriented.
+
+Next! I do usually use MongoDB for store things related to the users, in specific in my app, when a new user is registered I do create a unique id which is persisting over deletion / re-install (you could use Firebase AUTH or you can just use some fingerprinting methods). Storing then this Unique User ID into MongoDB, you have a list of Users which use your app.
+
+Based on this, we can send as mandatory "header" of the request the "userid" of the device which is sending the request, so we can keep track of who is sending the requests and how many requests are basically sent from the same "userid". This means that if you will notice TOO many requests from the same userid, most likely they just managed to understand how does the whole authorization works and you can just "remove" this userId from your MongoDB for stop allowing requests through your proxy. Easy! It's a sort of "token" auth, but in a more easy way. 
+
+
+### **What I need to do?**
+
+As this is a special fork which uses MongoDB for iterate between a list of users and userid stored on your database / collection, you will definitely have to implement a way for save users from your app to your MongoDB and after that, you can just access from the proxy the collection and check if the user is present in the collection, if he is then we authorize the request to OpenAi, otherwise we decline it.
 
 ## How to use ChatGPT API Reverse Proxy
 
